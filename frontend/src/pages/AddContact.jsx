@@ -5,6 +5,8 @@ const AddContact = ({
   handleJobTitle,
   handleImgUrl,
   handleSubmit,
+  handleContact,
+  contact,
   category,
   name,
   surname,
@@ -12,9 +14,9 @@ const AddContact = ({
   imgUrl,
 }) => {
   return (
-    <div className="max-w-[32rem] mx-auto  p-5">
+    <div className="max-w-[36rem] mx-auto  p-5">
       <form
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit}
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
@@ -26,14 +28,14 @@ const AddContact = ({
           <input
             type="text"
             value={category}
-            placeholder="Enter work category"
+            placeholder="Your work category"
             onChange={(e) => handleCategory(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
-            placeholder="Enter your name"
+            placeholder="Your name"
             value={name}
             onChange={(e) => handleName(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
@@ -41,7 +43,7 @@ const AddContact = ({
 
           <input
             type="text"
-            placeholder="Enter your surname"
+            placeholder="Your surname"
             value={surname}
             onChange={(e) => handleSurname(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
@@ -49,15 +51,22 @@ const AddContact = ({
 
           <input
             type="text"
-            placeholder="Enter your job title"
+            placeholder="Your job title"
             value={jobTitle}
             onChange={(e) => handleJobTitle(e)}
+            className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
+          />
+          <input
+            type="text"
+            placeholder="Your email or phone number or social media url"
+            value={contact}
+            onChange={(e) => handleContact(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
-            placeholder="Enter your image url"
+            placeholder="Your image url"
             value={imgUrl}
             onChange={(e) => handleImgUrl(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"

@@ -10,4 +10,17 @@ const getAllContactsController = async (_req, res) => {
   }
 };
 
-export { getAllContactsController };
+const createContactController = async (req, res) => {
+  const newContact = new Contact(req.body);
+  const saveContact = await newContact.save();
+  res
+    .status(201)
+    .json({ message: "Contact successfully created!", data: saveContact });
+  try {
+  } catch (error) {
+    console.error(`Error in createContactController ${error}`);
+    res.status(500).json("Internal server error");
+  }
+};
+
+export { getAllContactsController, createContactController };

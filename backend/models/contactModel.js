@@ -13,11 +13,15 @@ const contactSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  proffession: {
+  jobTitle: {
     type: String,
     required: true,
   },
   contact: {
+    type: String,
+    required: true,
+  },
+  imgUrl: {
     type: String,
     required: true,
   },

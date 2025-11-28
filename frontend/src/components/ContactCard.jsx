@@ -13,7 +13,7 @@ const ContactCard = ({ contact }) => {
        border-[#ecffdc] bg-white rounded-full"
       >
         <img
-          src={contact.image}
+          src={contact.imgUrl}
           alt={"profile"}
           className="w-full h-full aspect-square object-cover object-top rounded-full -z-10"
         />
@@ -26,21 +26,16 @@ const ContactCard = ({ contact }) => {
           <p className="text-[0.8rem] text-slate-700">{contact.jobTitle}</p>
         </div>
         <p className="btn font-semibold py-2 px-5 text-[0.85rem] text-green-950 w-fit rounded-3xl">
-          {contact.contactDetail}
+          {contact.contact}
         </p>
       </div>
       <div className="">
-        <button
-          type="button"
-          className="btn-card py-1 px-5 mx-2 rounded-2xl"
-          onClick={"update"}
-        >
+        <button type="button" className="btn-card py-1 px-5 mx-2 rounded-2xl">
           <CiEdit className="text-[1rem]" />
         </button>
         <button
           type="button"
           className="rounded-2xl border btn-bordered text-[#00d100] border-[#00d100] py-1 px-4 mx-2 "
-          onClick={"delete"}
         >
           <FaTrashAlt />
         </button>
