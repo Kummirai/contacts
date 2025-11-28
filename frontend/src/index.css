@@ -41,7 +41,8 @@
 } */
 
 body {
-  background: linear-gradient(to top, #ecffdc, white);
+  background: linear-gradient(to top, #ecffdc, #ffffff);
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 16px;
 }

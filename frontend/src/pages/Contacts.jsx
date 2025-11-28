@@ -45,7 +45,7 @@ const Contacts = ({}) => {
   ];
 
   return (
-    <main className="my-10 gap-4 p-4 sm:p-0 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <main className="my-10 gap-4  grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {contacts.map((contact) => (
         <ContactCard key={contact.id} contact={contact} />
       ))}
