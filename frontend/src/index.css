@@ -7,9 +7,41 @@
   height: 50%;
   background: linear-gradient(45deg, #ecffdc, white);
   clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
-  z-index: -1;
 }
 
 .btn {
   background: linear-gradient(45deg, #ecffdc, #ecffdc);
+}
+
+.btn-card {
+  background: linear-gradient(45deg, #00d100, #00ff00);
+  border: 1px solid transparent;
+  color: white;
+}
+
+.btn-card:hover {
+  background: none;
+  border: 1px solid #00d100;
+  cursor: pointer;
+  color: #00d100;
+}
+
+.btn-bordered:hover {
+  background: linear-gradient(45deg, #00d100, #00ff00);
+  border: 1px solid transparent;
+  color: white;
+  cursor: pointer;
+}
+
+/* .heading {
+  background: linear-gradient(45deg, #00d100, #00ff00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+} */
+
+body {
+  background: linear-gradient(to top, #ecffdc, white);
+  background-repeat: no-repeat;
+  height: 100vh;
 }

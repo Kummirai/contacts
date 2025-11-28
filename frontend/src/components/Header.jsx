@@ -5,14 +5,14 @@ const Header = ({ gotoAddContactPage, gotoHomePage }) => {
   return (
     <header className="p-5 flex items-center justify-between bg-[#ECFFDC] text-green-950">
       <h1
-        className="text-xl font-semibold sm:text-2xl hover:cursor-pointer hover:text-green-900 "
+        className="text-xl heading font-semibold sm:text-2xl hover:cursor-pointer hover:text-green-900 "
         onClick={() => gotoHomePage()}
       >
         Proffessional Contacts
       </h1>
       <button
         type="button"
-        className="bg-green-800 p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
+        className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
         onClick={() => {
           gotoAddContactPage();
         }}

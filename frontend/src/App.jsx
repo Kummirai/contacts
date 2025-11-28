@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <main className="max-w-6xl mx-auto my-5">
+    <main className="max-w-6xl mx-auto my-5 body-background">
       <Header
         gotoAddContactPage={gotoAddContactPage}
         gotoHomePage={gotoHomePage}
