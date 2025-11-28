@@ -1,8 +1,20 @@
-const AddContact = ({}) => {
+const AddContact = ({
+  handleCategory,
+  handleName,
+  handleSurname,
+  handleJobTitle,
+  handleImgUrl,
+  handleSubmit,
+  category,
+  name,
+  surname,
+  jobTitle,
+  imgUrl,
+}) => {
   return (
     <div className="max-w-[32rem] mx-auto  p-5">
       <form
-        onSubmit={""}
+        onSubmit={(e) => handleSubmit(e)}
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
@@ -13,45 +25,45 @@ const AddContact = ({}) => {
         <div className="m-5">
           <input
             type="text"
+            value={category}
             placeholder="Enter work category"
-            value={""}
-            onChange={"handleChange"}
+            onChange={(e) => handleCategory(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
             placeholder="Enter your name"
-            value={""}
-            onChange={"handleChange"}
+            value={name}
+            onChange={(e) => handleName(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
             placeholder="Enter your surname"
-            value={""}
-            onChange={"handleChange"}
+            value={surname}
+            onChange={(e) => handleSurname(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
             placeholder="Enter your job title"
-            value={""}
-            onChange={"handleChange"}
+            value={jobTitle}
+            onChange={(e) => handleJobTitle(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
 
           <input
             type="text"
             placeholder="Enter your image url"
-            value={""}
-            onChange={"handleChange"}
+            value={imgUrl}
+            onChange={(e) => handleImgUrl(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
         </div>
-        <button type="button" className="btn-card py-2 px-8 rounded-3xl ">
+        <button type="submit" className="btn-card py-2 px-8 rounded-3xl ">
           Add Contact
         </button>
       </form>
