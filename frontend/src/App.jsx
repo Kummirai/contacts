@@ -96,8 +96,13 @@ function App() {
     navigate("/add-contact");
   };
 
-  const handleDeleteContact = (id) => {
-    console.log(id);
+  const handleDeleteContact = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/contacts/${id}`, {
+      method: "DELETE",
+    });
+    const message = await response.json();
+    fetchContacts();
+    console.log(message);
   };
 
   const fetchContacts = async () => {

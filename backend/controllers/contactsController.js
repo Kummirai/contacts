@@ -38,8 +38,22 @@ const getContactByIdController = async (req, res) => {
   }
 };
 
+const deleteContactController = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Contact.findOneAndDelete({ _id: id });
+    res
+      .status(200)
+      .json({ success: true, message: "Contact successful deleted!" });
+  } catch (error) {
+    console.error(`Error in deleteContactController: ${error}`);
+    res.status(500).json("Internal server error");
+  }
+};
+
 export {
   getAllContactsController,
   createContactController,
   getContactByIdController,
+  deleteContactController,
 };
