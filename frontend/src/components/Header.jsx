@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ gotoAddContactPage, gotoHomePage }) => {
   return (
-    <header className="p-5 flex items-center justify-between bg-green-50 text-green-950">
+    <header className="p-5 flex items-center justify-between bg-[#ECFFDC] text-green-950">
       <h1
         className="text-xl font-semibold sm:text-2xl hover:cursor-pointer hover:text-green-900 "
         onClick={() => gotoHomePage()}
