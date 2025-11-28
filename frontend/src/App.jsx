@@ -2,7 +2,7 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <main>
+    <main className="max-w-6xl mx-auto my-5">
       <Header />
     </main>
   );
