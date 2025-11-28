@@ -6,13 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate();
-  const handleButtonClick = () => {
+
+  const gotoAddContactPage = () => {
     navigate("/add-contact");
+  };
+
+  const gotoHomePage = () => {
+    navigate("/");
   };
 
   return (
     <main className="max-w-6xl mx-auto my-5">
-      <Header handleButtonClick={handleButtonClick} />
+      <Header
+        gotoAddContactPage={gotoAddContactPage}
+        gotoHomePage={gotoHomePage}
+      />
       <Routes>
         <Route path="/" element={<Contacts />} />
         <Route path="/add-contact" element={<AddContact />} />
