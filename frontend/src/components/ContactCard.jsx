@@ -1,7 +1,12 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({
+  contact,
+  handleDeleteContact,
+  handleEditContact,
+  updateContact,
+}) => {
   return (
     <div className="relative flex flex-col justify-around items-center p-2 shadow-2xl h-100 rounded-xl bg-white">
       <div className="trapezium rounded-t-2xl"></div>
@@ -30,10 +35,15 @@ const ContactCard = ({ contact }) => {
         </p>
       </div>
       <div className="">
-        <button type="button" className="btn-card py-1 px-5 mx-2 rounded-2xl">
+        <button
+          type="button"
+          onClick={() => handleEditContact(contact._id)}
+          className="btn-card py-1 px-5 mx-2 rounded-2xl"
+        >
           <CiEdit className="text-[1rem]" />
         </button>
         <button
+          onClick={() => handleDeleteContact(contact._id)}
           type="button"
           className="rounded-2xl border btn-bordered text-[#00d100] border-[#00d100] py-1 px-4 mx-2 "
         >

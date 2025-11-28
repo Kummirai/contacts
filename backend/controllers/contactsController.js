@@ -23,4 +23,23 @@ const createContactController = async (req, res) => {
   }
 };
 
-export { getAllContactsController, createContactController };
+const getContactByIdController = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const contact = await Contact.findOne({ _id: id });
+    if (!contact) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+
+    res.status(200).json({ success: true, data: contact });
+  } catch (error) {
+    console.error(`Error in getContactByIdController: ${error}`);
+    res.status(500).json("Internal server error");
+  }
+};
+
+export {
+  getAllContactsController,
+  createContactController,
+  getContactByIdController,
+};

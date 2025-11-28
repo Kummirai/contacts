@@ -14,6 +14,7 @@ function App() {
   const [imgUrl, setImgUrl] = useState("");
   const [contact, setContact] = useState("");
   const [contacts, setContacts] = useState([]);
+  const [isUpdatingContact, setIsUpdatingContact] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,6 +24,8 @@ function App() {
 
   const gotoHomePage = () => {
     navigate("/");
+    setIsUpdatingContact(false);
+    resetFields();
   };
 
   const handleCategory = (e) => {
@@ -55,14 +58,52 @@ function App() {
     setImgUrl(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    console.log("kek");
+    const newContact = {
+      category,
+      name,
+      surname,
+      jobTitle,
+      contact,
+      imgUrl,
+    };
+
+    console.log(`New contact: ${newContact}`);
+  };
+
+  const resetFields = () => {
+    setCategory("");
+    setName("");
+    setSurname("");
+    setImgUrl("");
+    setContact("");
+    setJobTitle("");
+  };
+
+  const handleEditContact = async (id) => {
+    const response = await fetch(`http://localhost:3000/api/contacts/${id}`);
+    const data = await response.json();
+    const contactData = data.data;
+    setCategory(contactData.category);
+    setName(contactData.name);
+    setSurname(contactData.surname);
+    setImgUrl(contactData.imgUrl);
+    setContact(contactData.contact);
+    setJobTitle(contactData.jobTitle);
+    setIsUpdatingContact(true);
+
+    navigate("/add-contact");
+  };
+
+  const handleDeleteContact = (id) => {
+    console.log(id);
   };
 
   const fetchContacts = async () => {
     const response = await fetch("http://localhost:3000/api/contacts");
     const data = await response.json();
-    console.log(data.data);
+
     setContacts(data.data);
   };
 
@@ -75,9 +116,19 @@ function App() {
       <Header
         gotoAddContactPage={gotoAddContactPage}
         gotoHomePage={gotoHomePage}
+        isUpdatingContact={isUpdatingContact}
       />
       <Routes>
-        <Route path="/" element={<Contacts contacts={contacts} />} />
+        <Route
+          path="/"
+          element={
+            <Contacts
+              contacts={contacts}
+              handleEditContact={handleEditContact}
+              handleDeleteContact={handleDeleteContact}
+            />
+          }
+        />
         <Route
           path="/add-contact"
           element={
@@ -95,6 +146,8 @@ function App() {
               jobTitle={jobTitle}
               imgUrl={imgUrl}
               contact={contact}
+              isUpdatingContact={isUpdatingContact}
+              gotoHomePage={gotoHomePage}
             />
           }
         />

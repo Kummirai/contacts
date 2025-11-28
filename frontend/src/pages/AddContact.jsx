@@ -12,11 +12,12 @@ const AddContact = ({
   surname,
   jobTitle,
   imgUrl,
+  isUpdatingContact,
+  gotoHomePage,
 }) => {
   return (
     <div className="max-w-[36rem] mx-auto  p-5">
-      <form
-        onSubmit={handleSubmit}
+      <div
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
@@ -72,10 +73,27 @@ const AddContact = ({
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
         </div>
-        <button type="submit" className="btn-card py-2 px-8 rounded-3xl ">
-          Add Contact
-        </button>
-      </form>
+        {isUpdatingContact ? (
+          <div>
+            <button
+              onClick={gotoHomePage}
+              className="rounded-3xl border btn-bordered text-[#00d100] border-[#00d100] py-2 px-8 mx-2  "
+            >
+              Cancel
+            </button>
+            <button type="button" className="btn-card py-2 px-8 rounded-3xl ">
+              Update Contact
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            className="btn-card py-2 px-8 rounded-3xl "
+          >
+            Add Contact
+          </button>
+        )}
+      </div>
     </div>
   );
 };

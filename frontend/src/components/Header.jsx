@@ -1,7 +1,7 @@
 import { IoAddSharp } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { IoHomeSharp } from "react-icons/io5";
 
-const Header = ({ gotoAddContactPage, gotoHomePage }) => {
+const Header = ({ gotoAddContactPage, gotoHomePage, isUpdatingContact }) => {
   return (
     <header className="p-5 flex items-center justify-between bg-[#ECFFDC] text-green-950">
       <h1
@@ -10,15 +10,27 @@ const Header = ({ gotoAddContactPage, gotoHomePage }) => {
       >
         Proffessional Contacts
       </h1>
-      <button
-        type="button"
-        className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
-        onClick={() => {
-          gotoAddContactPage();
-        }}
-      >
-        <IoAddSharp className="text-xl text-white " />
-      </button>
+      {!isUpdatingContact ? (
+        <button
+          type="button"
+          className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
+          onClick={() => {
+            gotoAddContactPage();
+          }}
+        >
+          <IoAddSharp className="text-xl text-white " />
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
+          onClick={() => {
+            gotoHomePage();
+          }}
+        >
+          <IoHomeSharp className="text-xl text-white " />
+        </button>
+      )}
     </header>
   );
 };
