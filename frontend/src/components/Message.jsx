@@ -1,25 +1,17 @@
 const Message = ({ message }) => {
+  if (!message || message === "") return null;
+
   return (
-    <div
-      className={
-        message === ""
-          ? "hidden"
-          : "fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50"
-      }
-    >
-      {message.success === true ? (
-        <div
-          className={
-            "bg-green-100 text-green-800 py-2 px-8 border border-green-500 rounded-lg shadow-lg"
-          }
-        >
-          <p className="text-xs sm:text-[1rem]">{message.message}</p>
-        </div>
-      ) : (
-        <div className="bg-red-100 text-red-800 py-2 px-8 border border-red-500 rounded-lg shadow-lg">
-          <p className="text-xs sm:text-[0.85rem]">{message.message}</p>
-        </div>
-      )}
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+      <div
+        className={`px-12 py-3 rounded-xl shadow-lg text-center animate-fadeIn ${
+          message.success
+            ? "bg-green-100 border border-green-500 text-green-800"
+            : "bg-red-100 border border-red-500 text-red-800"
+        }`}
+      >
+        <p className="text-sm sm:text-base ">{message.message}</p>
+      </div>
     </div>
   );
 };

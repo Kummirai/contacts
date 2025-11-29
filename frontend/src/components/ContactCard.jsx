@@ -30,7 +30,7 @@ const ContactCard = ({
           </h2>
           <p className="text-[0.8rem] text-slate-700">{contact.jobTitle}</p>
         </div>
-        <p className="btn font-semibold py-2 px-5 text-[0.85rem] text-green-950 w-fit rounded-3xl">
+        <p className="btn font-semibold py-2 px-5 text-[0.8rem] text-green-950 w-fit rounded-3xl">
           {contact.contact}
         </p>
       </div>
