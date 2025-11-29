@@ -29,47 +29,52 @@ function App() {
   };
 
   const handleCategory = (e) => {
-    console.log(e.target.value);
     setCategory(e.target.value);
   };
 
   const handleName = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const handleSurname = (e) => {
-    console.log(e.target.value);
     setSurname(e.target.value);
   };
 
   const handleJobTitle = (e) => {
-    console.log(e.target.value);
     setJobTitle(e.target.value);
   };
 
   const handleContact = (e) => {
-    console.log(e.target.value);
     setContact(e.target.value);
   };
 
   const handleImgUrl = (e) => {
-    console.log(e.target.value);
     setImgUrl(e.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log("kek");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const newContact = {
-      category,
-      name,
-      surname,
-      jobTitle,
-      contact,
-      imgUrl,
+      category: category,
+      name: name,
+      surname: surname,
+      jobTitle: jobTitle,
+      contact: contact,
+      imgUrl: imgUrl,
     };
 
-    console.log(`New contact: ${newContact}`);
+    const response = await fetch("http://localhost:3000/api/contacts/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newContact),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    fetchContacts();
+    navigate("/");
+    resetFields();
   };
 
   const resetFields = () => {
@@ -143,7 +148,7 @@ function App() {
               handleImgUrl={handleImgUrl}
               handleJobTitle={handleJobTitle}
               handleCategory={handleCategory}
-              handlleSubmit={handleSubmit}
+              handleSubmit={handleSubmit}
               handleContact={handleContact}
               name={name}
               surname={surname}

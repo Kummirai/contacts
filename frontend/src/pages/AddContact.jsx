@@ -17,7 +17,8 @@ const AddContact = ({
 }) => {
   return (
     <div className="max-w-[36rem] mx-auto  p-5">
-      <div
+      <form
+        onSubmit={(e) => handleSubmit(e)}
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
@@ -27,6 +28,7 @@ const AddContact = ({
 
         <div className="m-5">
           <input
+            required
             type="text"
             value={category}
             placeholder="Your work category"
@@ -36,6 +38,7 @@ const AddContact = ({
 
           <input
             type="text"
+            required
             placeholder="Your name"
             value={name}
             onChange={(e) => handleName(e)}
@@ -44,6 +47,7 @@ const AddContact = ({
 
           <input
             type="text"
+            required
             placeholder="Your surname"
             value={surname}
             onChange={(e) => handleSurname(e)}
@@ -54,6 +58,7 @@ const AddContact = ({
             type="text"
             placeholder="Your job title"
             value={jobTitle}
+            required
             onChange={(e) => handleJobTitle(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
@@ -61,6 +66,7 @@ const AddContact = ({
             type="text"
             placeholder="Your email or phone number or social media url"
             value={contact}
+            required
             onChange={(e) => handleContact(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
@@ -69,6 +75,7 @@ const AddContact = ({
             type="text"
             placeholder="Your image url"
             value={imgUrl}
+            required
             onChange={(e) => handleImgUrl(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
@@ -77,7 +84,8 @@ const AddContact = ({
           <div>
             <button
               onClick={gotoHomePage}
-              className="rounded-3xl border btn-bordered text-[#00d100] border-[#00d100] py-2 px-8 mx-2  "
+              type="button"
+              className="rounded-3xl border btn-bordered text-[#00d100] border-[#00d100] py-2 px-8 mx-2 "
             >
               Cancel
             </button>
@@ -86,14 +94,11 @@ const AddContact = ({
             </button>
           </div>
         ) : (
-          <button
-            onClick={handleSubmit}
-            className="btn-card py-2 px-8 rounded-3xl "
-          >
+          <button type="submit" className="btn-card py-2 px-8 rounded-3xl ">
             Add Contact
           </button>
         )}
-      </div>
+      </form>
     </div>
   );
 };
