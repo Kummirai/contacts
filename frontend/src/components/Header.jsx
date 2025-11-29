@@ -3,7 +3,7 @@ import { IoHomeSharp } from "react-icons/io5";
 
 const Header = ({ gotoAddContactPage, gotoHomePage, isUpdatingContact }) => {
   return (
-    <header className="p-5 flex items-center justify-between bg-[#ECFFDC] text-green-950">
+    <header className="p-5 flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950">
       <h1
         className="text-xl heading font-semibold sm:text-2xl hover:cursor-pointer hover:text-green-900 "
         onClick={() => gotoHomePage()}

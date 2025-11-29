@@ -1,3 +1,5 @@
+import Message from "../components/Message";
+
 const AddContact = ({
   handleCategory,
   handleName,
@@ -14,6 +16,9 @@ const AddContact = ({
   imgUrl,
   isUpdatingContact,
   gotoHomePage,
+  submitEdit,
+  contactId,
+  message,
 }) => {
   return (
     <div className="max-w-[36rem] mx-auto  p-5">
@@ -22,8 +27,8 @@ const AddContact = ({
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
-        <h2 className="text-center text-2xl text-green-950 font-semibold">
-          Add Proffesional Contact
+        <h2 className="text-center text-xl text-green-950 font-semibold">
+          Create Contact
         </h2>
 
         <div className="m-5">
@@ -31,7 +36,7 @@ const AddContact = ({
             required
             type="text"
             value={category}
-            placeholder="Your work category"
+            placeholder="Work category"
             onChange={(e) => handleCategory(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />
@@ -39,7 +44,7 @@ const AddContact = ({
           <input
             type="text"
             required
-            placeholder="Your name"
+            placeholder="First Name"
             value={name}
             onChange={(e) => handleName(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
@@ -48,7 +53,7 @@ const AddContact = ({
           <input
             type="text"
             required
-            placeholder="Your surname"
+            placeholder="Last Name"
             value={surname}
             onChange={(e) => handleSurname(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
@@ -56,7 +61,7 @@ const AddContact = ({
 
           <input
             type="text"
-            placeholder="Your job title"
+            placeholder="Job Title"
             value={jobTitle}
             required
             onChange={(e) => handleJobTitle(e)}
@@ -64,7 +69,7 @@ const AddContact = ({
           />
           <input
             type="text"
-            placeholder="Your email or phone number or social media url"
+            placeholder="Email Or Phone Number Or Social Media Url"
             value={contact}
             required
             onChange={(e) => handleContact(e)}
@@ -73,7 +78,7 @@ const AddContact = ({
 
           <input
             type="text"
-            placeholder="Your image url"
+            placeholder="Image Url"
             value={imgUrl}
             required
             onChange={(e) => handleImgUrl(e)}
@@ -89,7 +94,11 @@ const AddContact = ({
             >
               Cancel
             </button>
-            <button type="button" className="btn-card py-2 px-8 rounded-3xl ">
+            <button
+              type="button"
+              onClick={() => submitEdit(contactId)}
+              className="btn-card py-2 px-8 rounded-3xl "
+            >
               Update Contact
             </button>
           </div>
@@ -99,6 +108,7 @@ const AddContact = ({
           </button>
         )}
       </form>
+      <Message message={message} />
     </div>
   );
 };

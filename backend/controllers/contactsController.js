@@ -15,7 +15,11 @@ const createContactController = async (req, res) => {
   const saveContact = await newContact.save();
   res
     .status(201)
-    .json({ message: "Contact successfully created!", data: saveContact });
+    .json({
+      success: true,
+      message: "Contact successfully created!",
+      data: saveContact,
+    });
   try {
   } catch (error) {
     console.error(`Error in createContactController ${error}`);
@@ -44,9 +48,27 @@ const deleteContactController = async (req, res) => {
     await Contact.findOneAndDelete({ _id: id });
     res
       .status(200)
-      .json({ success: true, message: "Contact successful deleted!" });
+      .json({ success: true, message: "Contact successfully deleted!" });
   } catch (error) {
     console.error(`Error in deleteContactController: ${error}`);
+    res.status(500).json("Internal server error");
+  }
+};
+
+const updateContactController = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const editContact = await Contact.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Contact updated successfully!",
+      data: editContact,
+    });
+  } catch (error) {
+    console.error(`Error in updateContactControler: ${error}`);
     res.status(500).json("Internal server error");
   }
 };
@@ -56,4 +78,5 @@ export {
   createContactController,
   getContactByIdController,
   deleteContactController,
+  updateContactController,
 };

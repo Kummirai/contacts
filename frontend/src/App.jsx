@@ -15,6 +15,8 @@ function App() {
   const [contact, setContact] = useState("");
   const [contacts, setContacts] = useState([]);
   const [isUpdatingContact, setIsUpdatingContact] = useState(false);
+  const [contactId, setContactId] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -71,10 +73,13 @@ function App() {
     });
 
     const data = await response.json();
-    console.log(data);
+    setMessage(data);
     fetchContacts();
-    navigate("/");
-    resetFields();
+    setTimeout(() => {
+      setMessage("");
+      navigate("/");
+      resetFields();
+    }, 1000);
   };
 
   const resetFields = () => {
@@ -96,18 +101,52 @@ function App() {
     setImgUrl(contactData.imgUrl);
     setContact(contactData.contact);
     setJobTitle(contactData.jobTitle);
+    setContactId(contactData._id);
     setIsUpdatingContact(true);
 
     navigate("/add-contact");
   };
 
-  const handleDeleteContact = async (id) => {
+  const submitEdit = async (id) => {
+    const edittedContact = {
+      category,
+      name,
+      surname,
+      contact,
+      jobTitle,
+      imgUrl,
+    };
     const response = await fetch(`http://localhost:3000/api/contacts/${id}`, {
-      method: "DELETE",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(edittedContact),
     });
-    const message = await response.json();
+    const data = await response.json();
+    setMessage(data);
     fetchContacts();
-    console.log(message);
+    setTimeout(() => {
+      setMessage("");
+      navigate("/");
+      resetFields();
+    }, 1000);
+  };
+
+  const handleDeleteContact = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/contacts/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      setMessage(data);
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
+      fetchContacts();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchContacts = async () => {
@@ -136,6 +175,7 @@ function App() {
               contacts={contacts}
               handleEditContact={handleEditContact}
               handleDeleteContact={handleDeleteContact}
+              message={message}
             />
           }
         />
@@ -156,8 +196,11 @@ function App() {
               jobTitle={jobTitle}
               imgUrl={imgUrl}
               contact={contact}
+              contactId={contactId}
               isUpdatingContact={isUpdatingContact}
               gotoHomePage={gotoHomePage}
+              submitEdit={submitEdit}
+              message={message}
             />
           }
         />

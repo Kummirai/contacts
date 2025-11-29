@@ -1,10 +1,12 @@
 import ContactCard from "../components/contactCard";
+import Message from "../components/Message";
 
 const Contacts = ({
   contacts,
   handleDeleteContact,
   handleEditContact,
   updateContact,
+  message,
 }) => {
   return (
     <main className="my-10 gap-4  grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -17,6 +19,7 @@ const Contacts = ({
           updateContact={updateContact}
         />
       ))}
+      <Message message={message} />
     </main>
   );
 };
