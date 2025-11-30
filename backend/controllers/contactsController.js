@@ -72,10 +72,16 @@ const updateContactController = async (req, res) => {
   }
 };
 
+const getCategoryController = async (req, res) => {
+  const { category } = req.params;
+  console.log(category);
+};
+
 export {
   getAllContactsController,
   createContactController,
   getContactByIdController,
   deleteContactController,
   updateContactController,
+  getCategoryController,
 };
