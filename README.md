@@ -155,10 +155,9 @@ Contacts
 
 ![Home Page](https://images.unsplash.com/photo-1568992688065-536aad8a12f6?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
 
-![Contact Management](https://images.unsplash.com/photo-1688372296394-f8c21c15ed65?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
+![Contact Management](./frontend/public/contacts.png)
 
 ```
-🔧 Environment Variables
 Backend (.env)
 env
 PORT=5000
