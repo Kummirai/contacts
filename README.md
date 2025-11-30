@@ -2,7 +2,7 @@
 
 A modern fullstack contact management application built with the MERN stack (MongoDB, Express.js, React, Node.js) that allows users to manage their professional network with ease.
 
-![Contact Manager](/homepage)
+![Contact Manager](./public/homepage.png)
 
 ## 📋 Table of Contents
 
