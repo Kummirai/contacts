@@ -155,6 +155,10 @@ Contacts
 
 ![Contact Management](./frontend/public/contacts.png)
 
+### 📸 Edit Contact
+
+![Add Contact](./frontend/public/edit-contact.png)
+
 ```
 Backend (.env)
 env
