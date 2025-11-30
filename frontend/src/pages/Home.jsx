@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Home = ({}) => {
   return (
-    <div className=" min-h-screen grid grid-cols-12 ">
-      <div className="absolute -z-10 grid grid-cols-13 grid-rows-12 h-screen w-full">
+    <div className=" min-h-screen flex items-center justify-center">
+      <div className="hidden absolute -z-10 lg:grid grid-cols-13 grid-rows-12 h-screen max-w-8xl">
         <div className=" shadow-2xl col-start-3 row-start-3 w-25 h-25 border-3 border-white rounded-full">
           <img
             src="https://plus.unsplash.com/premium_photo-1681967056414-40de53affa8b?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -13,7 +13,7 @@ const Home = ({}) => {
         </div>
         <div className=" col-start-2 row-start-9 w-30 h-30 border-4 border-white  rounded-full">
           <img
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
             className="h-full w-full aspect-square object-cover object-top rounded-full"
           />
@@ -25,7 +25,7 @@ const Home = ({}) => {
             className="h-full w-full aspect-square object-cover object-top rounded-full"
           />
         </div>
-        <div className=" col-start-7 row-start-2 w-30 h-30 ">
+        <div className=" col-start-7 row-start-2 w-25 h-25">
           <img
             src="/chat.png"
             alt=""
@@ -41,11 +41,11 @@ const Home = ({}) => {
         </div>
       </div>
 
-      <div className=" text-center col-start-4 my-auto col-end-10 ">
-        <h1 className="text-5xl text-slate-800 font-semibold">
-          Your Proffessional Network
+      <div className=" text-center w-2/4">
+        <h1 className="text-5xl text-slate-800  font-semibold">
+          Your Professional Network
         </h1>
-        <p className="text-2xl text-slate-800 font-light mt-8 mb-16 ">
+        <p className="text-2xl text-slate-800 font-thin mt-8 mb-16 ">
           A professional network unlocks opportunities and provides crucial
           support. It’s a vital asset for career growth, offering access to
           jobs, advice, and industry insights that are otherwise hard to find.
