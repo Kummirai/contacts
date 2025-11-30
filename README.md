@@ -138,26 +138,32 @@ Contacts
 - GET /api/categories/:category Get contacts by category
   🎨 Frontend Components
   Home.jsx
-  https://plus.unsplash.com/premium_photo-1681967056414?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D
+  (https://plus.unsplash.com/premium_photo-1681967056414?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
 
-Landing page with professional design and call-to-action.
+- Landing page with professional design and call-to-action.
 
-Contacts.jsx
-Main contacts display page with grid layout and category filtering.
+### Contacts.jsx
 
-AddContact.jsx
-Form for creating and updating contact information with validation.
+- Main contacts display page with grid layout and category filtering.
 
-ContactCard.jsx
-Individual contact card component displaying contact details.
+### AddContact.jsx
 
-📸 Screenshots
-Home Page
-https://images.unsplash.com/photo-1568992688065-536aad8a12f6?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D
+- Form for creating and updating contact information with validation.
 
-Contact Management
-https://images.unsplash.com/photo-1688372296394-f8c21c15ed65?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D
+### ContactCard.jsx
 
+- Individual contact card component displaying contact details.
+
+### 📸 Screenshots
+
+- Home Page
+  (https://images.unsplash.com/photo-1568992688065-536aad8a12f6?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
+
+### Contact Management
+
+(https://images.unsplash.com/photo-1688372296394-f8c21c15ed65?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
+
+```
 🔧 Environment Variables
 Backend (.env)
 env
@@ -192,6 +198,8 @@ Open a Pull Request
 
 📄 License
 This project is licensed under the MIT License.
+
+```
 
 ```
 
