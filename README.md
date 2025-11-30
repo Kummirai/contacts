@@ -45,6 +45,7 @@ A modern fullstack contact management application built with the MERN stack (Mon
 
 ## 📁 Project Structure
 
+```
 contact-manager/
 ├── client/ # React frontend
 │ ├── components/
@@ -67,6 +68,7 @@ contact-manager/
 │ │ └── contactModel.js
 │ └── ...
 └── README.md
+```
 
 text
 
