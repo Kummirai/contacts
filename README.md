@@ -134,8 +134,6 @@ Contacts
 - Method Endpoint Description
 - GET /api/categories Get all categories
 - GET /api/categories/:category Get contacts by category
-  🎨 Frontend Components
-  ![Home.jsx](https://plus.unsplash.com/premium_photo-1681967056414?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D)
 
 - Landing page with professional design and call-to-action.
 
@@ -147,13 +145,13 @@ Contacts
 
 - Form for creating and updating contact information with validation.
 
-### ContactCard.jsx
-
-- Individual contact card component displaying contact details.
-
 ### 📸 Add Contact
 
 ![Add Contact](./frontend/public/add-contact.png)
+
+### ContactCard.jsx
+
+- Individual contact card component displaying contact details.
 
 ![Contact Management](./frontend/public/contacts.png)
 
