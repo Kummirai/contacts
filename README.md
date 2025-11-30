@@ -118,22 +118,27 @@ The application will be available at:
 Frontend: http://localhost:3000
 
 Backend API: http://localhost:5000
+```
 
-🔌 API Endpoints
+### 🔌API Endpoints
+
 Contacts
-Method  Endpoint  Description
-GET /api/contacts Get all contacts
-POST  /api/contacts Create a new contact
-GET /api/contacts/:id Get contact by ID
-PUT /api/contacts/:id Update contact by ID
-DELETE  /api/contacts/:id Delete contact by ID
-Categories
-Method  Endpoint  Description
-GET /api/categories Get all categories
-GET /api/categories/:category Get contacts by category
-🎨 Frontend Components
-Home.jsx
-https://plus.unsplash.com/premium_photo-1681967056414?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D
+
+- Method Endpoint Description
+- GET /api/contacts Get all contacts
+- POST /api/contacts Create a new contact
+- GET /api/contacts/:id Get contact by ID
+- PUT /api/contacts/:id Update contact by ID
+- DELETE /api/contacts/:id Delete contact by ID
+
+### Categories
+
+- Method Endpoint Description
+- GET /api/categories Get all categories
+- GET /api/categories/:category Get contacts by category
+  🎨 Frontend Components
+  Home.jsx
+  https://plus.unsplash.com/premium_photo-1681967056414?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D
 
 Landing page with professional design and call-to-action.
 
@@ -164,15 +169,15 @@ JWT_SECRET=your_jwt_secret
 Backend Scripts
 json
 {
-  "start": "node server.js",
-  "dev": "nodemon server.js"
+"start": "node server.js",
+"dev": "nodemon server.js"
 }
 Frontend Scripts
 json
 {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test"
+"start": "react-scripts start",
+"build": "react-scripts build",
+"test": "react-scripts test"
 }
 🤝 Contributing
 Fork the repository
@@ -187,4 +192,7 @@ Open a Pull Request
 
 📄 License
 This project is licensed under the MIT License.
+
+```
+
 ```
