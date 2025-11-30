@@ -17,6 +17,8 @@ function App() {
   const [isUpdatingContact, setIsUpdatingContact] = useState(false);
   const [contactId, setContactId] = useState("");
   const [message, setMessage] = useState("");
+  const [contactCategory, setContactCategory] = useState([]);
+  const [selectedValue, setSelectedValue] = useState("");
 
   const navigate = useNavigate();
 
@@ -149,6 +151,27 @@ function App() {
     }
   };
 
+  const fectchCategories = async () => {
+    const response = await fetch(
+      "http://localhost:3000/api/contacts/categories",
+    );
+    const data = await response.json();
+    setContactCategory(data.data);
+  };
+
+  const handleSelectCategory = async (event) => {
+    const category = event.target.value;
+    if (category === "All") {
+      fetchContacts();
+    } else {
+      const response = await fetch(
+        `http://localhost:3000/api/contacts/categories/${category}`,
+      );
+      const data = await response.json();
+      setContacts(data.data);
+    }
+  };
+
   const fetchContacts = async () => {
     const response = await fetch("http://localhost:3000/api/contacts");
     const data = await response.json();
@@ -158,6 +181,7 @@ function App() {
 
   useEffect(() => {
     fetchContacts();
+    fectchCategories();
   }, []);
 
   return (
@@ -166,6 +190,7 @@ function App() {
         gotoAddContactPage={gotoAddContactPage}
         gotoHomePage={gotoHomePage}
         isUpdatingContact={isUpdatingContact}
+        selectedValue={selectedValue}
       />
       <Routes>
         <Route
@@ -176,6 +201,8 @@ function App() {
               handleEditContact={handleEditContact}
               handleDeleteContact={handleDeleteContact}
               message={message}
+              contactCategory={contactCategory}
+              handleSelectCategory={handleSelectCategory}
             />
           }
         />
