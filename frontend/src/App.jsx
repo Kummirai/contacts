@@ -77,6 +77,7 @@ function App() {
     const data = await response.json();
     setMessage(data);
     fetchContacts();
+    fectchCategories();
     setTimeout(() => {
       setMessage("");
       navigate("/");
