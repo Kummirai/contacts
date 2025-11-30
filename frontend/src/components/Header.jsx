@@ -1,15 +1,26 @@
 import { IoAddSharp } from "react-icons/io5";
 import { IoHomeSharp } from "react-icons/io5";
 
-const Header = ({ gotoAddContactPage, gotoHomePage, isUpdatingContact }) => {
+const Header = ({
+  gotoAddContactPage,
+  gotoHomePage,
+  isUpdatingContact,
+  currentUrl,
+}) => {
   return (
-    <header className="p-5 flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950">
-      <h1
-        className="text-xl heading font-semibold sm:text-2xl hover:cursor-pointer text-green-900 "
+    <header
+      className={
+        currentUrl === "/"
+          ? "hidden"
+          : "pt-10 pb-3  flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950"
+      }
+    >
+      <h2
+        className="text-xl heading font-semibold hover:cursor-pointer text-green-900 "
         onClick={() => gotoHomePage()}
       >
-        Proffessional Contacts
-      </h1>
+        Contacts
+      </h2>
       {!isUpdatingContact ? (
         <button
           aria-label="update"

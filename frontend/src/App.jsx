@@ -5,6 +5,8 @@ import AddContact from "./pages/AddContact";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import Home from "./pages/Home";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -20,7 +22,11 @@ function App() {
   const [contactCategory, setContactCategory] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
 
+  const location = useLocation();
+
   const navigate = useNavigate();
+  const currentUrl = location.pathname;
+  console.log(currentUrl);
 
   const gotoAddContactPage = () => {
     navigate("/add-contact");
@@ -131,7 +137,7 @@ function App() {
     fetchContacts();
     setTimeout(() => {
       setMessage("");
-      navigate("/");
+      navigate("/contacts");
       resetFields();
     }, 1000);
   };
@@ -186,16 +192,24 @@ function App() {
   }, []);
 
   return (
-    <main className="max-w-6xl mx-auto  body-background">
+    <main
+      className={
+        currentUrl === "/"
+          ? "w-full body-background h-full"
+          : "max-w-6xl mx-auto  body-background h-full"
+      }
+    >
       <Header
         gotoAddContactPage={gotoAddContactPage}
         gotoHomePage={gotoHomePage}
         isUpdatingContact={isUpdatingContact}
         selectedValue={selectedValue}
+        currentUrl={currentUrl}
       />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/"
+          path="/contacts"
           element={
             <Contacts
               contacts={contacts}
