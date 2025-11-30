@@ -11,9 +11,9 @@ export const SelectCategory = ({
         onChange={(e) => handleSelectCategory(e)}
       >
         <option value="All">All</option>
-        {contactCategory?.map((category) => (
-          <option value={category.category} key={category._id}>
-            {category.category}
+        {contactCategory?.map((category, index) => (
+          <option value={category} key={index}>
+            {category}
           </option>
         ))}
       </select>

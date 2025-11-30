@@ -2,7 +2,7 @@ import Contact from "../models/contactModel.js";
 
 const getAllCategoriesController = async (req, res) => {
   try {
-    const allCategories = await Contact.find({}, { category: 1 });
+    const allCategories = await Contact.distinct("category");
     res.status(200).json({
       success: true,
       message: "Categories successfully retrieved!",
