@@ -21,7 +21,7 @@ const AddContact = ({
   message,
 }) => {
   return (
-    <div className="max-w-[36rem] mx-auto  p-5">
+    <div className="max-w-[36rem] mx-auto sm:px-5 p-0">
       <form
         onSubmit={(e) => handleSubmit(e)}
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full

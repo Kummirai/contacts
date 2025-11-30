@@ -5,7 +5,7 @@ import connectToDb from "./mongoDB/db.js";
 import cors from "cors";
 
 dotenv.config();
-const corsOptions = "http://localhost:5173";
+const corsOptions = ["http://localhost:5173", "http://172.20.10.2:5173"];
 const PORT = process.env.PORT || 3000;
 
 const app = express();

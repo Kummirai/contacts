@@ -45,5 +45,20 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   padding: 16px;
-  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media (max-width: 639px) {
+  /* sm breakpoint is usually 640px */
+  .custom-max-width {
+    max-width: 285px;
+    min-width: 283px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1279px) {
+  main {
+    padding: 0 16px;
+  }
 }

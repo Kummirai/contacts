@@ -8,9 +8,9 @@ const ContactCard = ({
   updateContact,
 }) => {
   return (
-    <div className="relative flex flex-col justify-around items-center p-2 shadow-2xl h-100 rounded-xl bg-white">
+    <div className="relative  custom-max-width flex flex-col justify-around items-center p-2 shadow-2xl h-100 rounded-xl bg-white">
       <div className="trapezium rounded-t-2xl"></div>
-      <h2 className="text-lg z-2 text-green-900 font-semibold">
+      <h2 className="text-md z-2 text-green-900 font-semibold">
         {contact.category}
       </h2>
       <div
@@ -30,7 +30,7 @@ const ContactCard = ({
           </h2>
           <p className="text-[0.8rem] text-slate-700">{contact.jobTitle}</p>
         </div>
-        <p className="btn font-semibold py-2 px-5 text-[0.8rem] text-green-950 w-fit rounded-3xl">
+        <p className="btn font-semibold py-2 px-5 text-xs text-green-950 w-fit rounded-3xl">
           {contact.contact}
         </p>
       </div>

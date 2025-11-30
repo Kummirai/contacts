@@ -13,13 +13,11 @@ const getAllContactsController = async (_req, res) => {
 const createContactController = async (req, res) => {
   const newContact = new Contact(req.body);
   const saveContact = await newContact.save();
-  res
-    .status(201)
-    .json({
-      success: true,
-      message: "Contact successfully created!",
-      data: saveContact,
-    });
+  res.status(201).json({
+    success: true,
+    message: "Contact successfully created!",
+    data: saveContact,
+  });
   try {
   } catch (error) {
     console.error(`Error in createContactController ${error}`);
@@ -57,6 +55,7 @@ const deleteContactController = async (req, res) => {
 
 const updateContactController = async (req, res) => {
   const { id } = req.params;
+  ``;
 
   try {
     const editContact = await Contact.findByIdAndUpdate(id, req.body, {

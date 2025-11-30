@@ -12,6 +12,7 @@ const Header = ({ gotoAddContactPage, gotoHomePage, isUpdatingContact }) => {
       </h1>
       {!isUpdatingContact ? (
         <button
+          aria-label="update"
           type="button"
           className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
           onClick={() => {
@@ -23,6 +24,7 @@ const Header = ({ gotoAddContactPage, gotoHomePage, isUpdatingContact }) => {
       ) : (
         <button
           type="button"
+          aria-label="home"
           className="btn-card p-1 rounded-xs hover:bg-green-600 hover:cursor-pointer"
           onClick={() => {
             gotoHomePage();
