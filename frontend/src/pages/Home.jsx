@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const Home = ({ isloggedIn }) => {
   console.log(isloggedIn);
@@ -60,7 +61,14 @@ const Home = ({ isloggedIn }) => {
           type="button"
           className="bg-[#00d100] border border-transparent text-white text-[1rem] px-12 py-3 rounded-4xl hover:cursor-pointer hover:border hover:border-[#00d100] hover:bg-transparent hover:text-[#00d100]"
         >
-          Get Started
+          {!isloggedIn ? (
+            "Get Started"
+          ) : (
+            <span className="flex items-center">
+              <span className="mr-2 mb-1">Continue view to contacts</span>{" "}
+              <FaArrowCircleRight className="text-2xl" />
+            </span>
+          )}
         </Link>
       </div>
     </div>
