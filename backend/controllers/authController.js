@@ -12,6 +12,7 @@ const signUpUserController = async (req, res) => {
       .status(400)
       .json({ success: false, message: "User name already taken!" });
   }
+  ``;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: "Invalid email format" });

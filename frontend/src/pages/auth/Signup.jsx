@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import Message from "../../components/Message";
 
-const Signup = () => {
+const Signup = ({
+  handleSignUp,
+  handleSignUpUsername,
+  handleSignUpUEmail,
+  handleSignUpUserPassword,
+  message,
+}) => {
   return (
     <div className="flex flex-col max-w-md p-10 mx-auto ">
       <div className="flex flex-col items-center">
@@ -17,13 +24,14 @@ const Signup = () => {
           Sign up into your account
         </h2>
       </div>
-      <form>
+      <form onSubmit={handleSignUp}>
         <label htmlFor="email" className="flex flex-col mb-2">
           <span className="text-slate-600 p-1">Username</span>
           <input
             type="text"
             placeholder="Username"
-            id="email"
+            onChange={(e) => handleSignUpUsername(e)}
+            id="username"
             className="p-2 text-s text-slate-600 rounded-md border outline-[#00d100] border-[#AFE1AF] bg-[#ecffdc] "
             required
           />
@@ -34,6 +42,7 @@ const Signup = () => {
             type="email"
             placeholder="Email"
             id="email"
+            onChange={(e) => handleSignUpUEmail(e)}
             className="p-2 text-s text-slate-600 rounded-md border outline-[#00d100] border-[#AFE1AF] bg-[#ecffdc] "
             required
           />
@@ -41,6 +50,7 @@ const Signup = () => {
         <label htmlFor="password" className="flex flex-col mb-4">
           <span className="text-slate-600 p-1">Password</span>
           <input
+            onChange={(e) => handleSignUpUserPassword(e)}
             type="password"
             placeholder="Password"
             id="password"
@@ -74,6 +84,7 @@ const Signup = () => {
       >
         Already have an account, Login
       </Link>
+      <Message message={message} />
     </div>
   );
 };

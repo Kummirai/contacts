@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, redirect } from "react-router-dom";
 import Header from "./components/Header";
 import Contacts from "./pages/Contacts";
 import AddContact from "./pages/AddContact";
@@ -24,12 +24,14 @@ function App() {
   const [contactCategory, setContactCategory] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
   const [isloggedIn, setIsloggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   const location = useLocation();
 
   const navigate = useNavigate();
   const currentUrl = location.pathname;
-  console.log(currentUrl);
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -199,6 +201,54 @@ function App() {
     fectchCategories();
   }, []);
 
+  //handle signup
+  const handleSignUpUsername = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSignUpUEmail = (e) => {
+    setUserEmail(e.target.value);
+  };
+
+  const handleSignUpUserPassword = (e) => {
+    setUserPassword(e.target.value);
+  };
+
+  const newUser = {
+    username: username,
+    email: userEmail,
+    password: userPassword,
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(
+      `http://localhost:3000/api/contacts/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      },
+    );
+    const data = await response.json();
+    setMessage(data);
+    console.log(data);
+    if (data.success) {
+      setTimeout(() => {
+        setMessage("");
+        navigate("/auth/login");
+      }, 1500);
+    } else {
+      setTimeout(() => {
+        setMessage("");
+      }, 1500);
+    }
+  };
+
+  //return
   return (
     <main
       className={
@@ -214,7 +264,18 @@ function App() {
         currentUrl={currentUrl}
       />
       <Routes>
-        <Route path="/auth/signup" element={<Signup />} />
+        <Route
+          path="/auth/signup"
+          element={
+            <Signup
+              handleSignUp={handleSignUp}
+              handleSignUpUsername={handleSignUpUsername}
+              handleSignUpUserPassword={handleSignUpUserPassword}
+              handleSignUpUEmail={handleSignUpUEmail}
+              message={message}
+            />
+          }
+        />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/" element={<Home isloggedIn={isloggedIn} />} />
         <Route
