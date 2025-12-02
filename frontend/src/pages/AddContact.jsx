@@ -27,7 +27,7 @@ const AddContact = ({
         className=" rounded-2xl flex flex-col justify-evenly items-center p-5 h-full
         "
       >
-        <h2 className="text-center text-xl text-green-950 font-semibold">
+        <h2 className="text-center text-xl text-slate-700 font-semibold">
           Create Contact
         </h2>
 
@@ -80,7 +80,6 @@ const AddContact = ({
             type="text"
             placeholder="Image Url"
             value={imgUrl}
-            required
             onChange={(e) => handleImgUrl(e)}
             className=" rounded-xl w-full border px-6 py-3 border-[#AFE1AF] outline-[#4F7942] m-2"
           />

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Home from "./pages/Home";
 import { useLocation } from "react-router-dom";
 import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -30,9 +31,14 @@ function App() {
   const currentUrl = location.pathname;
   console.log(currentUrl);
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const gotoAddContactPage = () => {
     navigate("/add-contact");
   };
+  ``;
 
   const gotoHomePage = () => {
     navigate("/");
@@ -41,7 +47,7 @@ function App() {
   };
 
   const handleCategory = (e) => {
-    setCategory(e.target.value);
+    setCategory(capitalizeFirstLetter(e.target.value));
   };
 
   const handleName = (e) => {
@@ -205,10 +211,10 @@ function App() {
         gotoAddContactPage={gotoAddContactPage}
         gotoHomePage={gotoHomePage}
         isUpdatingContact={isUpdatingContact}
-        selectedValue={selectedValue}
         currentUrl={currentUrl}
       />
       <Routes>
+        <Route path="/auth/signup" element={<Signup />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/" element={<Home isloggedIn={isloggedIn} />} />
         <Route
