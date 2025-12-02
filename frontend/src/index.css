@@ -11,7 +11,7 @@
   clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
 }
 
-.btn {
+.input-bg {
   background: linear-gradient(45deg, #ecffdc, #ecffdc);
 }
 

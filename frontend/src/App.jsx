@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import { useLocation } from "react-router-dom";
+import Login from "./pages/Login";
 
 function App() {
   const [category, setCategory] = useState("");
@@ -21,6 +22,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [contactCategory, setContactCategory] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [isloggedIn, setIsloggedIn] = useState(false);
 
   const location = useLocation();
 
@@ -207,7 +209,8 @@ function App() {
         currentUrl={currentUrl}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home isloggedIn={isloggedIn} />} />
         <Route
           path="/contacts"
           element={

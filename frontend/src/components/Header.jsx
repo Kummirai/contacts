@@ -12,7 +12,9 @@ const Header = ({
       className={
         currentUrl === "/"
           ? "hidden"
-          : "pt-10 pb-3  flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950"
+          : currentUrl === "/login"
+            ? "hidden"
+            : "pt-10 pb-3  flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950"
       }
     >
       <h2
