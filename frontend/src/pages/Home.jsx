@@ -47,12 +47,12 @@ const Home = ({ isloggedIn }) => {
         </div>
         <div className="">
           <h1 className="text-[46px] text-slate-800 mb-3  font-semibold">
-            Your Professional Network
+            {!isloggedIn ? "Your Professional Network" : "Your Network Awaits"}
           </h1>
           <p className="text-[22px] text-slate-800 font-thin ">
-            A professional network unlocks opportunities and provides crucial
-            support. It’s a vital asset for career growth, offering access to
-            jobs, advice, and industry insights that are otherwise hard to find.
+            {!isloggedIn
+              ? "A professional network unlocks opportunities and provides crucial support. It’s a vital asset for career growth, offering access to jobs, advice, and industry insights that are otherwise hard to find."
+              : "Welcome back! Your professional network is ready to grow. Explore new connections, share your insights, and discover opportunities tailored just for you. The next step in your career is waiting."}
           </p>
         </div>
 
