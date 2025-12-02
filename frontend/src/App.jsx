@@ -27,6 +27,8 @@ function App() {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [userLoginEmail, setUserLoginEmail] = useState();
+  const [userLoginPassword, setUserLoginPassword] = useState();
 
   const location = useLocation();
 
@@ -72,6 +74,7 @@ function App() {
     setImgUrl(e.target.value);
   };
 
+  //add new contact
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -101,6 +104,7 @@ function App() {
     }, 1000);
   };
 
+  //reset fields
   const resetFields = () => {
     setCategory("");
     setName("");
@@ -110,6 +114,7 @@ function App() {
     setJobTitle("");
   };
 
+  //edit contact
   const handleEditContact = async (id) => {
     const response = await fetch(`http://localhost:3000/api/contacts/${id}`);
     const data = await response.json();
@@ -152,6 +157,7 @@ function App() {
     }, 1000);
   };
 
+  //delete contact
   const handleDeleteContact = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/contacts/${id}`, {
@@ -168,6 +174,7 @@ function App() {
     }
   };
 
+  //fetch all categories
   const fectchCategories = async () => {
     const response = await fetch(
       "http://localhost:3000/api/contacts/categories",
@@ -176,6 +183,7 @@ function App() {
     setContactCategory(data.data);
   };
 
+  //select category
   const handleSelectCategory = async (event) => {
     const category = event.target.value;
     if (category === "All") {
@@ -189,6 +197,7 @@ function App() {
     }
   };
 
+  //fetch all contacts
   const fetchContacts = async () => {
     const response = await fetch("http://localhost:3000/api/contacts");
     const data = await response.json();
@@ -248,6 +257,49 @@ function App() {
     }
   };
 
+  //handle log in
+  const handleLogInEmail = (e) => {
+    setUserLoginEmail(e.target.value);
+  };
+
+  const handleLogInPassword = (e) => {
+    setUserLoginPassword(e.target.value);
+  };
+
+  const user = {
+    email: userLoginEmail,
+    password: userLoginPassword,
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(
+      `http://localhost:3000/api/contacts/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      },
+    );
+    const data = await response.json();
+    setMessage(data);
+    console.log(data);
+    if (data.success) {
+      setIsloggedIn(true);
+      setTimeout(() => {
+        setMessage("");
+        navigate("/contacts");
+      }, 1500);
+    } else {
+      setTimeout(() => {
+        setMessage("");
+      }, 1500);
+    }
+  };
+
   //return
   return (
     <main
@@ -276,7 +328,17 @@ function App() {
             />
           }
         />
-        <Route path="/auth/login" element={<Login />} />
+        <Route
+          path="/auth/login"
+          element={
+            <Login
+              handleLogin={handleLogin}
+              handleLogInPassword={handleLogInPassword}
+              handleLogInEmail={handleLogInEmail}
+              message={message}
+            />
+          }
+        />
         <Route path="/" element={<Home isloggedIn={isloggedIn} />} />
         <Route
           path="/contacts"

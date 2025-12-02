@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import Message from "../../components/Message";
 
-const Login = () => {
+const Login = ({
+  handleLogin,
+  handleLogInEmail,
+  handleLogInPassword,
+  message,
+}) => {
   return (
     <div className="flex flex-col max-w-md p-4 mx-auto mt-10 ">
       <div className="flex flex-col items-center">
@@ -17,11 +23,12 @@ const Login = () => {
           Log in into your account
         </h2>
       </div>
-      <form>
+      <form onSubmit={handleLogin}>
         <label htmlFor="email" className="flex flex-col mb-2">
           <span className="text-slate-600 p-1">Email</span>
           <input
             type="email"
+            onChange={(e) => handleLogInEmail(e)}
             placeholder="Email"
             id="email"
             className="p-2 text-s text-slate-600 rounded-md border outline-[#00d100] border-[#AFE1AF] bg-[#ecffdc] "
@@ -33,6 +40,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
+            onChange={(e) => handleLogInPassword(e)}
             id="password"
             className="p-2 text-s text-slate-600 rounded-md border border-[#AFE1AF]  outline-[#00d100] bg-[#ecffdc]"
             required
@@ -63,6 +71,7 @@ const Login = () => {
       >
         Don't have an account? Sign Up
       </Link>
+      <Message message={message} />
     </div>
   );
 };
