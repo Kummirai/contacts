@@ -1,5 +1,7 @@
 import { IoAddSharp } from "react-icons/io5";
 import { IoHomeSharp } from "react-icons/io5";
+import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = ({
   gotoAddContactPage,
@@ -12,17 +14,36 @@ const Header = ({
       className={
         currentUrl === "/"
           ? "hidden"
-          : currentUrl === "/login"
+          : currentUrl === "/auth/login"
             ? "hidden"
-            : "pt-10 pb-3  flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950"
+            : currentUrl === "/auth/signup"
+              ? "hidden"
+              : "pt-10 pb-3  flex items-center justify-between border-b border-b-[#ECFFDC] text-green-950"
       }
     >
-      <h2
-        className="text-xl heading font-semibold hover:cursor-pointer text-green-900 "
-        onClick={() => gotoHomePage()}
+      <Link
+        to={
+          currentUrl === "/add-contact"
+            ? "/contacts"
+            : currentUrl === "/contacts"
+              ? "/"
+              : "/"
+        }
       >
-        Contacts
-      </h2>
+        <h2 className="text-lg heading font-semibold hover:cursor-pointer text-slate-700 ">
+          <span className="flex items-center">
+            <span className="">
+              <IoArrowBackCircleSharp className="text-slate-600 text-2xl" />
+            </span>
+            <span className="ml-2">
+              {currentUrl === "/add-contact"
+                ? "Back to contacts"
+                : "Back to Home page"}
+            </span>
+          </span>
+        </h2>
+      </Link>
+
       {!isUpdatingContact ? (
         <button
           aria-label="update"

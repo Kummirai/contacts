@@ -57,7 +57,7 @@ const Home = ({ isloggedIn }) => {
         </div>
 
         <Link
-          to={isloggedIn ? "/contacts" : "/login"}
+          to={isloggedIn ? "/contacts" : "auth/login"}
           type="button"
           className="bg-[#00d100] border border-transparent text-white text-[1rem] px-12 py-3 rounded-4xl hover:cursor-pointer hover:border hover:border-[#00d100] hover:bg-transparent hover:text-[#00d100]"
         >
