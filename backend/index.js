@@ -4,6 +4,7 @@ import connectToDb from "./mongoDB/db.js";
 import cors from "cors";
 import contactsRoute from "./routes/contactsRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
+import authRoute from "./routes/authRoute.js";
 
 dotenv.config();
 const corsOptions = ["http://localhost:5173", "http://172.20.10.2:5173"];
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/contacts/categories", categoryRoute);
 app.use("/api/contacts", contactsRoute);
+app.use("/api/contacts/auth", authRoute);
 
 app.listen(PORT, async () => {
   await connectToDb();

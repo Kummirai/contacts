@@ -23,7 +23,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [contactCategory, setContactCategory] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
-  const [isloggedIn, setIsloggedIn] = useState(true);
+  const [isloggedIn, setIsloggedIn] = useState(false);
 
   const location = useLocation();
 

@@ -48,16 +48,7 @@ const Signup = () => {
             required
           />
         </label>
-        <label htmlFor="password" className="flex flex-col mb-4">
-          <span className="text-slate-600 p-1">Confirm Password</span>
-          <input
-            type="password"
-            placeholder="Confirm password"
-            id="confirm password"
-            className="p-2 text-s text-slate-600 rounded-md border border-[#AFE1AF]  outline-[#00d100] bg-[#ecffdc]"
-            required
-          />
-        </label>
+
         <button
           type="submit"
           className="bg-[#00d100] text-white w-[100%] p-2 rounded-md hover:bg-[#00d000] mb-4 hover:cursor-pointer "
