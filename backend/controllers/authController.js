@@ -1,43 +1,88 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import passport from "passport";
+import passportLocal from "passport-local";
+
+const LocalStrategy = passportLocal.Strategy;
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async (email, password, done) => {
+      try {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          return done(null, false, { message: "Invalid email format" });
+        }
+
+        const user = await User.findOne({ email }).select("+password");
+        if (!user) {
+          return done(null, false, { message: "Email not found!" });
+        }
+
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (err) {
+            console.log(`Error in bcrypt compare: ${err}`);
+            return done(err);
+          }
+
+          if (result) {
+            return done(null, {
+              username: user.username,
+              email: user.email,
+              contacts: user.contacts,
+              id: user._id.toString(),
+            });
+          } else {
+            return done(null, false, { message: "Invalid password!" });
+          }
+        });
+      } catch (error) {
+        console.error("Error in passport strategy:", error);
+        return done(error);
+      }
+    },
+  ),
+);
 
 //log in controller
-const logInUserController = async (req, res) => {
-  const { email, password } = req.body;
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: "Invalid email format" });
-  }
-
-  const checkEmail = await User.findOne({ email }).select("+password");
-  if (!checkEmail) {
-    res.status(400).json({ success: false, message: "Email not found!" });
-  }
-
-  bcrypt.compare(password, checkEmail.password, (err, result) => {
+const logInUserController = async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
     if (err) {
-      console.log(`Error in loginController: ${err}`);
-      res.status(500).json("Internal server error");
-    }
-    if (result) {
-      res.status(200).json({
-        success: true,
-        message: "User logged in successfully!",
-        data: {
-          username: checkEmail.username,
-          email: checkEmail.email,
-          contacts: checkEmail.contacts,
-          id: checkEmail._id,
-        },
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
       });
-    } else {
-      res.status(400).json({ success: false, message: "Invalid Password!" });
     }
-  });
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: info.message || "Authentication failed",
+      });
+    }
+
+    // Log the user in
+    req.login(user, (err) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Login error",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "User logged in successfully",
+        data: user,
+      });
+    });
+  })(req, res, next);
 };
 
-//Sign up controller
 const signUpUserController = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -84,5 +129,18 @@ const signUpUserController = async (req, res) => {
     res.status(500).json("Internal server error");
   }
 };
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error, null);
+  }
+});
 
 export { signUpUserController, logInUserController };

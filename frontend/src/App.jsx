@@ -205,11 +205,6 @@ function App() {
     setContacts(data.data);
   };
 
-  useEffect(() => {
-    fetchContacts();
-    fectchCategories();
-  }, []);
-
   //handle signup
   const handleSignUpUsername = (e) => {
     setUsername(e.target.value);
@@ -266,11 +261,6 @@ function App() {
     setUserLoginPassword(e.target.value);
   };
 
-  const user = {
-    email: userLoginEmail,
-    password: userLoginPassword,
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -281,15 +271,20 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify({
+          email: userLoginEmail,
+          password: userLoginPassword,
+        }),
+        credentials: "include",
       },
     );
     const data = await response.json();
     setMessage(data);
     console.log(data);
     if (data.success) {
-      setIsloggedIn(true);
       setTimeout(() => {
+        fetchContacts();
+        fectchCategories();
         setMessage("");
         navigate("/contacts");
       }, 1500);
