@@ -199,7 +199,13 @@ function App() {
 
   //fetch all contacts
   const fetchContacts = async () => {
-    const response = await fetch("http://localhost:3000/api/contacts");
+    const response = await fetch("http://localhost:3000/api/contacts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
     const data = await response.json();
 
     setContacts(data.data);
@@ -294,6 +300,21 @@ function App() {
       }, 1500);
     }
   };
+
+  const getSessionCookie = () => {
+    const sessionCookie = document.cookie;
+    if (sessionCookie) {
+      setIsloggedIn(true);
+      fetchContacts();
+      fectchCategories();
+    } else {
+      setIsloggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    getSessionCookie();
+  }, []);
 
   //return
   return (

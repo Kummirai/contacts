@@ -11,7 +11,7 @@ import isAuthenticated from "../middleware/isAuthenticated.js";
 const contactsRoute = Router();
 
 contactsRoute.get("/", isAuthenticated, getAllContactsController);
-contactsRoute.post("/", createContactController);
+contactsRoute.post("/", isAuthenticated, createContactController);
 contactsRoute.get("/:id", getContactByIdController);
 contactsRoute.delete("/:id", deleteContactController);
 contactsRoute.put("/:id", updateContactController);
