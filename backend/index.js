@@ -7,6 +7,7 @@ import categoryRoute from "./routes/categoryRoute.js";
 import authRoute from "./routes/authRoute.js";
 import session from "express-session";
 import passport from "passport";
+import { isAuthenticated } from "./controllers/authController.js";
 
 dotenv.config();
 const corsOptions = {
@@ -21,7 +22,7 @@ app.use(
   session({
     secret: "MYSECRET",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       secure: false,
       httpOnly: true,
@@ -37,9 +38,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/api/contacts/auth", authRoute);
 app.use("/api/contacts/categories", categoryRoute);
 app.use("/api/contacts", contactsRoute);
-app.use("/api/contacts/auth", authRoute);
 
 app.listen(PORT, async () => {
   await connectToDb();

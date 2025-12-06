@@ -4,7 +4,7 @@ import Contacts from "./pages/Contacts";
 import AddContact from "./pages/AddContact";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, createContext } from "react";
 import Home from "./pages/Home";
 import { useLocation } from "react-router-dom";
 import Login from "./pages/auth/Login";
@@ -29,6 +29,9 @@ function App() {
   const [userPassword, setUserPassword] = useState("");
   const [userLoginEmail, setUserLoginEmail] = useState();
   const [userLoginPassword, setUserLoginPassword] = useState();
+  const [user, setUser] = useState("");
+
+  const AuthContext = createContext();
 
   const location = useLocation();
 
@@ -300,102 +303,120 @@ function App() {
       }, 1500);
     }
   };
+  const userStatus = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/contacts/auth/session",
+        {
+          credentials: "include",
+        },
+      );
 
-  const getSessionCookie = () => {
-    const sessionCookie = document.cookie;
-    if (sessionCookie) {
-      setIsloggedIn(true);
-      fetchContacts();
-      fectchCategories();
-    } else {
-      setIsloggedIn(false);
+      if (response.status === 200) {
+        const data = await response.json();
+        setUser(data.user); // Logged in
+      } else {
+        setUser(null); // Not logged in
+      }
+    } catch (error) {
+      console.error("Session check failed:", error);
+      setUser(null);
     }
   };
 
   useEffect(() => {
-    getSessionCookie();
+    userStatus();
   }, []);
 
   //return
   return (
-    <main
-      className={
-        currentUrl === "/"
-          ? "w-full body-background h-full"
-          : "max-w-6xl mx-auto  body-background h-full"
-      }
-    >
-      <Header
-        gotoAddContactPage={gotoAddContactPage}
-        gotoHomePage={gotoHomePage}
-        isUpdatingContact={isUpdatingContact}
-        currentUrl={currentUrl}
-      />
-      <Routes>
-        <Route
-          path="/auth/signup"
-          element={
-            <Signup
-              handleSignUp={handleSignUp}
-              handleSignUpUsername={handleSignUpUsername}
-              handleSignUpUserPassword={handleSignUpUserPassword}
-              handleSignUpUEmail={handleSignUpUEmail}
-              message={message}
-            />
-          }
+    <AuthContext.Provider value={user}>
+      <main
+        className={
+          currentUrl === "/"
+            ? "w-full body-background h-full"
+            : "max-w-6xl mx-auto  body-background h-full"
+        }
+      >
+        <Header
+          gotoAddContactPage={gotoAddContactPage}
+          gotoHomePage={gotoHomePage}
+          isUpdatingContact={isUpdatingContact}
+          currentUrl={currentUrl}
         />
-        <Route
-          path="/auth/login"
-          element={
-            <Login
-              handleLogin={handleLogin}
-              handleLogInPassword={handleLogInPassword}
-              handleLogInEmail={handleLogInEmail}
-              message={message}
-            />
-          }
-        />
-        <Route path="/" element={<Home isloggedIn={isloggedIn} />} />
-        <Route
-          path="/contacts"
-          element={
-            <Contacts
-              contacts={contacts}
-              handleEditContact={handleEditContact}
-              handleDeleteContact={handleDeleteContact}
-              message={message}
-              contactCategory={contactCategory}
-              handleSelectCategory={handleSelectCategory}
-            />
-          }
-        />
-        <Route
-          path="/add-contact"
-          element={
-            <AddContact
-              handleSurname={handleSurname}
-              handleName={handleName}
-              handleImgUrl={handleImgUrl}
-              handleJobTitle={handleJobTitle}
-              handleCategory={handleCategory}
-              handleSubmit={handleSubmit}
-              handleContact={handleContact}
-              name={name}
-              surname={surname}
-              category={category}
-              jobTitle={jobTitle}
-              imgUrl={imgUrl}
-              contact={contact}
-              contactId={contactId}
-              isUpdatingContact={isUpdatingContact}
-              gotoHomePage={gotoHomePage}
-              submitEdit={submitEdit}
-              message={message}
-            />
-          }
-        />
-      </Routes>
-    </main>
+        <Routes>
+          <Route
+            path="/auth/signup"
+            element={
+              <Signup
+                handleSignUp={handleSignUp}
+                handleSignUpUsername={handleSignUpUsername}
+                handleSignUpUserPassword={handleSignUpUserPassword}
+                handleSignUpUEmail={handleSignUpUEmail}
+                message={message}
+                user={user}
+              />
+            }
+          />
+          <Route
+            path="/auth/login"
+            element={
+              <Login
+                handleLogin={handleLogin}
+                handleLogInPassword={handleLogInPassword}
+                handleLogInEmail={handleLogInEmail}
+                message={message}
+                user={user}
+              />
+            }
+          />
+          <Route
+            path="/"
+            element={<Home isloggedIn={isloggedIn} user={user} />}
+          />
+          <Route
+            path="/contacts"
+            element={
+              <Contacts
+                contacts={contacts}
+                handleEditContact={handleEditContact}
+                handleDeleteContact={handleDeleteContact}
+                message={message}
+                contactCategory={contactCategory}
+                handleSelectCategory={handleSelectCategory}
+                user={user}
+              />
+            }
+          />
+          <Route
+            path="/add-contact"
+            element={
+              <AddContact
+                handleSurname={handleSurname}
+                handleName={handleName}
+                handleImgUrl={handleImgUrl}
+                handleJobTitle={handleJobTitle}
+                handleCategory={handleCategory}
+                handleSubmit={handleSubmit}
+                handleContact={handleContact}
+                name={name}
+                surname={surname}
+                category={category}
+                jobTitle={jobTitle}
+                imgUrl={imgUrl}
+                contact={contact}
+                contactId={contactId}
+                isUpdatingContact={isUpdatingContact}
+                gotoHomePage={gotoHomePage}
+                submitEdit={submitEdit}
+                message={message}
+                user={user}
+              />
+            }
+          />
+        </Routes>
+      </main>
+    </AuthContext.Provider>
   );
 }
 

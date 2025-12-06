@@ -19,7 +19,12 @@ const AddContact = ({
   submitEdit,
   contactId,
   message,
+  user,
 }) => {
+  if (!user) {
+    return <Navigate to="/auth/login" />;
+  }
+
   return (
     <div className="max-w-[36rem] mx-auto sm:px-5 p-0">
       <form

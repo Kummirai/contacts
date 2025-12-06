@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import Message from "../../components/Message";
+import { Navigate } from "react-router-dom";
 
 const Login = ({
   handleLogin,
   handleLogInEmail,
   handleLogInPassword,
   message,
+  user,
 }) => {
+  if (user) {
+    return <Navigate to="/contacts" replace />;
+  }
+
   return (
     <div className="flex flex-col max-w-md p-4 mx-auto mt-10 ">
       <div className="flex flex-col items-center">

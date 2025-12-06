@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const Home = ({ isloggedIn }) => {
-  console.log(isloggedIn);
+const Home = ({ user }) => {
   return (
     <div className="h-screen flex items-center justify-center">
       <div className=" absolute -z-10 grid grid-cols-13 grid-rows-12 h-screen max-w-8xl">
@@ -47,21 +46,21 @@ const Home = ({ isloggedIn }) => {
         </div>
         <div className="">
           <h1 className="text-[46px] text-slate-800 mb-3  font-semibold">
-            {!isloggedIn ? "Your Professional Network" : "Your Network Awaits"}
+            {!user ? "Your Professional Network" : "Your Network Awaits"}
           </h1>
           <p className="text-[22px] text-slate-800 font-thin ">
-            {!isloggedIn
+            {!user
               ? "A professional network unlocks opportunities and provides crucial support. It’s a vital asset for career growth, offering access to jobs, advice, and industry insights that are otherwise hard to find."
               : "Welcome back! Your professional network is ready to grow. Explore new connections, share your insights, and discover opportunities tailored just for you. The next step in your career is waiting."}
           </p>
         </div>
 
         <Link
-          to={isloggedIn ? "/contacts" : "auth/login"}
+          to={user ? "/contacts" : "auth/login"}
           type="button"
           className="bg-[#00d100] border border-transparent text-white text-[1rem] px-12 py-3 rounded-4xl hover:cursor-pointer hover:border hover:border-[#00d100] hover:bg-transparent hover:text-[#00d100]"
         >
-          {!isloggedIn ? (
+          {!user ? (
             "Get Started"
           ) : (
             <span className="flex items-center">
